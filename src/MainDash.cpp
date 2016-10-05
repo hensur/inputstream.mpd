@@ -913,8 +913,10 @@ void Session::GetSupportedDecrypterURN(std::pair<std::string, std::string> &urn)
   if (!xbmc->GetSetting("DECRYPTERPATH", specialpath))
   {
     xbmc->Log(ADDON::LOG_DEBUG, "DECRYPTERPATH not specified in settings.xml");
-    return;
+    strcpy(specialpath, "/data/app/org.xbmc.kodi-2/lib/x86");
+    xbmc->Log(ADDON::LOG_DEBUG, "Trying system path");
   }
+
   addonstring path(xbmc->TranslateSpecialProtocol(specialpath));
   
   kodihost.SetLibraryPath(path.c_str());
